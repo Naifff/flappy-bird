@@ -34,7 +34,7 @@ function подготовка () {
     птичка = game.createSprite(0, 2)
     птичка.set(LedSpriteProperty.Direction, 0)
     птичка.set(LedSpriteProperty.Blink, 300)
-    game.setLife(5)
+    game.setLife(2)
     game.setScore(0)
 }
 function двигать_стенку () {
@@ -57,9 +57,3 @@ function проверка_координаты () {
         game.removeLife(1)
     }
 }
-input.onGesture(Gesture.Shake, function () {
-    играидет = false
-})
-basic.forever(function () {
-	
-})
