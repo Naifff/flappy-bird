@@ -25,7 +25,6 @@ input.onButtonPressed(Button.AB, function () {
         удалить_стенку()
         basic.pause(500)
     }
-    game.gameOver()
 })
 input.onButtonPressed(Button.B, function () {
     птичка.move(1)
@@ -34,7 +33,7 @@ function подготовка () {
     птичка = game.createSprite(0, 2)
     птичка.set(LedSpriteProperty.Direction, 0)
     птичка.set(LedSpriteProperty.Blink, 300)
-    game.setLife(2)
+    game.setLife(5)
     game.setScore(0)
 }
 function двигать_стенку () {
@@ -42,7 +41,19 @@ function двигать_стенку () {
         for (let sprite of препятствие) {
             sprite.move(-1)
         }
-        basic.pause(500)
+        if (game.score() < 10) {
+            basic.pause(500)
+        } else if (game.score() < 20) {
+            basic.pause(450)
+        } else if (game.score() < 30) {
+            basic.pause(400)
+        } else if (game.score() < 40) {
+            basic.pause(350)
+        } else if (game.score() < 50) {
+            basic.pause(300)
+        } else {
+            basic.pause(250)
+        }
     }
 }
 function удалить_стенку () {
@@ -55,5 +66,11 @@ function проверка_координаты () {
         game.addScore(1)
     } else {
         game.removeLife(1)
+    }
+    if (game.score() >= 100) {
+        играидет = false
+        птичка.delete()
+        basic.pause(1000)
+        basic.showString("YOU WIN!!!")
     }
 }
