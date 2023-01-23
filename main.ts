@@ -1,9 +1,11 @@
+let играидет = false
 let птичка: game.LedSprite = null
 let пусто = 0
 let препятствие: game.LedSprite[] = []
-let играидет = false
 input.onButtonPressed(Button.A, function () {
-    птичка.move(-1)
+    if (играидет) {
+        птичка.move(-1)
+    }
 })
 function сделать_стенку () {
     пусто = randint(0, 4)
@@ -27,7 +29,9 @@ input.onButtonPressed(Button.AB, function () {
     }
 })
 input.onButtonPressed(Button.B, function () {
-    птичка.move(1)
+    if (играидет) {
+        птичка.move(1)
+    }
 })
 function подготовка () {
     птичка = game.createSprite(0, 2)
@@ -51,8 +55,10 @@ function двигать_стенку () {
             basic.pause(350)
         } else if (game.score() < 50) {
             basic.pause(300)
-        } else {
+        } else if (game.score() < 60) {
             basic.pause(250)
+        } else {
+            basic.pause(200)
         }
     }
 }
